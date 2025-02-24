@@ -1,3 +1,14 @@
+State management in React is how you handle and share data across components efficiently.
+
+State in React is a way to store and manage dynamic data within a component.
+
+3️⃣ Types of State in React-
+
+Local State: 
+Global State: 
+Server State: 
+Url State:
+
 import { useState } from 'react';
 
 export default function Form() {
