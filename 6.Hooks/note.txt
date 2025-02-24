@@ -1,0 +1,79 @@
+Hooks let us to use different features from our component.
+either use buildin hooks or combine them to build own hook.
+
+a special function that allows developers to use React features without writing a class.
+State Hooks:
+
+-State let a componnet remember information like user input.
+For example, a form component can use state to store the input value, while an image gallery component can use state to store the selected image index.
+
+-To add state to a component use one of these hooks:
+1.useState:  declare a state variable than you can update directly.
+2.useReducer: declares a state variable with the update logic inside a reducer function.
+
+function ImageGallery() {
+  const [index, setIndex] = useState(0);
+  // ...
+
+
+==============================================================
+
+Context Hooks:
+______________ 
+
+Context let a component receive information from distant parent without passing it as props. 
+ex- app top level component pass the current UI theme to all componnet below.
+
+useContext
+
+function Button() {
+  const theme = useContext(ThemeContext);
+  // ...
+  ============================================================
+
+Ref Hooks: it let a component to hold some information that isn't used for rendering, 
+like a DOM node or a timeout ID.Refs are an “escape hatch” from the React paradigm. They are useful when you need to work with non-React systems, such as the built-in browser APIs.
+
+ function Form() {
+  const inputRef = useRef(null);
+  // ...
+
+
+
+Effect Hooks: connects a component to an external system
+_____________ 
+
+https://react.dev/reference/react/hooks
+
+
+Performance Hooks :: optimize performance, skip unnecessary work. 
+____________________
+useMemo-
+useCallback-
+useTransition
+useDeferredValue 
+
+
+Other Hooks- useId, useDebugValue,useSyncExternalStore,useActionState
+
+
+Your Own Hooks;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

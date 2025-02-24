@@ -1,0 +1,41 @@
+while printing list on the screen there is a error shown in console . 
+
+# Each child in a list should have a unique "key" prop. #
+
+You need to give each array item a key — a string or a number that uniquely identifies it among other items in that array:
+
+<li key={person.id}>...</li>
+
+Note
+----
+JSX elements directly inside a map() call always need keys!
+
+Why they need key;-
+-Help react to uniquely identify elements.
+-When React updates the UI, it needs to know which items have changed, added, or removed
+-Optimizes performance.
+-Without keys, React re-renders all items, even if only one changed.
+With keys, React only updates the changed items.
+
+
+Keys tell React which array item each component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. A well-chosen key helps React infer what exactly has happened, and make the correct updates to the DOM tree.
+============================================================================================================================================================
+
+Where to get your key 
+--------------------- 
+
+Different sources of data provide different soruce of keys:
+
+
+
+-Why index and Math.random() Are Bad Keys & How React Uses Keys Efficiently
+-Why should you avoid using an array index (index) as a key?
+-When no key is provided, React automatically uses the array index as the key.
+-This is fine if the list never changes, but when items are inserted, deleted, or reordered, indexes change, which leads to bugs.
+
+
+Math.random() generates a new key on every render, meaning React can’t track the elements correctly.
+Result: React destroys and recreates all elements on every update, leading to performance issues and loss of state.
+
+
+3️⃣ Why doesn’t React pass key as a prop to components?

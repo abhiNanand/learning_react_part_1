@@ -1,0 +1,172 @@
+useContext is a React Hook that allows a component to access values from a context.
+
+It helps share data (like themes, authentication, or global settings) between components without passing props manually at every level.
+
+
+Syntax
+______ 
+const value = useContext(SomeContext);
+
+Call useContext at the top level of your component to read and subscribe to context.
+
+
+import { useContext } from 'react';
+
+function MyComponent() {
+  const theme = useContext(ThemeContext);
+  // ...
+}
+
+---------------------------------
+useContext return the context value.
+
+
+createContext - used to create a context that allows to share data across the component tree without having to pass props manually at every level (prop drilling).
+
+
+
+Syntx:
+const MyContext=React.createContext(defaultValue);
+
+Creates a Context:
+React.createContext() returns an object with two components:
+Provider: Allows components to provide values.
+Consumer: Allows components to consume values (though useContext is preferred now).
+Provides Values:
+The Provider component is used to wrap a part of the component tree where the value should be accessible.
+Consumes Values:
+Components inside the provider can access the shared value using the useContext hook.
+
+Example1.
+
+creating a context
+__________________ 
+
+import React, { createContext, useContext } from "react";
+
+// Create a Context
+const ThemeContext = createContext("light");
+
+export default ThemeContext;
+
+
+2. Providing a Value
+ 
+import ThemeContext from "./ThemeContext";
+
+const App = () => {
+  return (
+    <ThemeContext.Provider value="dark">
+      <ChildComponent />
+    </ThemeContext.Provider>
+  );
+};
+
+
+3. Consuming the Context using useContext
+ const ChildComponent = () => {
+  const theme = useContext(ThemeContext);
+  return <p>The current theme is {theme}</p>;
+};
+
+
+=====================================================
+
+import React, { useContext } from "react"; // Import useContext
+import ThemeContext from "./ThemeContext";
+
+const ChildComponent = () => {
+  const theme = useContext(ThemeContext); // Correct use of useContext
+  return <p>The current theme is {theme}</p>;
+};
+
+const App = () => {
+  return (
+    <ThemeContext.Provider value="dark">//agar ye na hota tho initival value hi print hoti
+      <ChildComponent />
+    </ThemeContext.Provider>
+  );
+};
+
+export default App;
+===============================================
+
+import React, { createContext, useContext } from "react";
+
+// Create a Context
+const ThemeContext = createContext("light");
+
+export default ThemeContext;
+=========================================================
+
+https://www.freecodecamp.org/news/react-context-for-beginners/
+
+
+
+What is React context?
+React context allows us to pass down and use (consume) data in whatever component we need in our React app without using props.
+
+In other words, React context allows us to share data (state) across our components more easily.
+
+These types of data include:
+
+-Theme data (like dark or light mode)
+-User data (the currently authenticated user)
+-Location-specific data (like user language or locale)
+
+
+Note:
+-React Context is best suited for storing data that does not change frequently.
+-Context is not optimized for frequent updates:
+-This can lead to performance issues, especially if the context changes frequently
+
+=======================================================================
+
+What problems does React context solve?
+
+Props drilling: Props drilling is a term to describe when you pass props down multiple levels to a nested component, through components that don't need it.
+
+example of prop drilling: 
+
+ function App() {
+  const user = "John Doe";
+  return <Parent user={user} />;
+}
+
+function Parent({ user }) {
+  return <Child user={user} />;
+}
+
+function Child({ user }) {
+  return <GrandChild user={user} />;
+}
+
+function GrandChild({ user }) {
+  return <h1>Hello, {user}!</h1>;
+}
+
+In the above example, user is passed through multiple levels (App → Parent → Child → GrandChild), even though only GrandChild needs
+=============================================================================
+What is the issue with this example?
+
+The issue is that we are drilling the theme prop through multiple components that don't immediately need it.
+
+The Header component doesn't need theme other than to pass it down to its child component. In other words, it would be better for User , Login and Menu to consume the theme data directly.
+++++++++++++++++++++++++++++++++++++
+
+How do I use React context?
+Context is an API that is built into React, starting from React version 16.
+
+This means that we can create and use context directly by importing React in any React project.
+
+There are four steps to using React context:
+
+Create context using the createContext method.
+Take your created context and wrap the context provider around your component tree.
+Put any value you like on your context provider using the value prop.
+Read that value within any component by using the context consumer.
+===================================================================
+
+Passing name using context and read it in nested componnet.
+___________________________________________________________
+

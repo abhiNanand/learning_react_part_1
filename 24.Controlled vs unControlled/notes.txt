@@ -1,0 +1,46 @@
+Controlled vs Uncontrolled Components 
+-------------------------------------- 
+
+What is controlled component ?
+- Controlled component in react form element( like <input>,<textarea>, or <select>) where React controls the value through state.
+
+Key Characteristics of Controlled Components:
+1. The form element's value is stored in the component's state.
+2. The value is updated via React's useState or this.setState in class components.
+3.The component fully controls the input behaviour.            
+
+Example: 
+import {useState} from 'react';
+function ControlledInput()
+{
+    const [text,setText] = useState("");
+
+    return(
+        <div>
+        <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}//updateds state on change 
+        />
+        <p>Typed text:{text} </p>
+        </div>
+    );
+}
+==============================================================================
+
+What are uncontrolled componenet?
+A uncontrolled component is a form element (like <input>, <textarea>, or <select>) where react does not controlled the value. Instead, the value is managed by the DOM itself, and we use refs to access it when needed.    
+
+Key Characteristics of Uncontrolled Components
+---------------------------------------------- 
+1. The form element's value is not stored in React state.
+2. The DOM handle the value instead of React. 
+3. We use useRef to read the value. 
+4. Useful when you don't need real-time state updates for input fields.
+
+Example:
+
+
+
+==============================================================================
+

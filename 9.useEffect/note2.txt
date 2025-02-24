@@ -1,0 +1,125 @@
+https://www.w3schools.com/react/react_useeffect.asp
+
+useEffect(<function> , <dependecy>)
+second argument is optional
+
+========================================================================
+
+What is the need of UseEffect?
+https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/
+
+What are side effects in React?
+=Common side effects include:
+
+-Making a request to an API for data from a backend server
+-To interact with browser APIs (that is, to use document or window directly)
+-Using unpredictable timing functions like setTimeout or setInterval
+
+This is why useEffect exists: to provide a way to handle performing these side effects 
+
+For example, if we wanted to change the title meta tag to display the user's name in their browser tab, we could do it within the component itself, but we shouldn't.
+
+function User({ name }) {
+  document.title = name; 
+  // This is a side effect. Don't do this in the component body!
+
+  return <h1>{name}</h1>;   
+}
+
+This function component updates the browser tab title (document.title) based on the name prop:
+
+
+2️⃣ What’s wrong with this approach?
+-React components should only focus on rendering UI.
+-Changing document.title is not related to rendering—it’s a "side effect."
+-This makes our component impure (not predictable).
+-If we perform a side effect directly in our component body, it gets in the way of our React component's rendering.
+
+4️⃣ Why shouldn’t we put side effects inside the component body?
+-React re-renders components whenever state or props change.
+-If we modify document.title inside the component body, it will run every time the component renders.
+-This can cause unexpected behavior or performance issues.
+
+--Side effects should be separated from the rendering process. If we need to perform a side effect, it should strictly be done after our component renders.
+
+
+############################
+This is why we use useEffect. It let us interact with outside world but not effect the rendering or performance of the component that it's in .
+############################
+
+
+
+How to use useEffect?
+_____________________
+
+//1. import useEffect
+import {useEffect} from 'react';
+function MyComponent()
+{
+  //2. call it above the returned JSX
+  //3. pass two arguments to it: a function and  an array(dependencies array).This array includes all the values that our side effect relies on.
+  ye optional v hota hai. 
+  useEffect( ()=>{}, [])
+  //return...
+}
+
+
+======================================================
+Now using this hook to change the title without disturbing rendering.
+
+import {useEffect} from 'react';
+
+function MyComponent()
+{
+
+// Runs only when `name` changes, not every time render
+useEffect(()=>{document.title= name ;},[name]);
+//runs after rendering, properly handling the sideffect.
+return <h1>{name}</h1>;
+}
+
+in this example we are changing the title based on name, thats why we include it in array.
+What this array is doing. It sees if a value is changed beteewn render or not, if so it will execute the use effect function again.
+========================================================
+
+How to fix common mistakes with useEffect
+_________________________________________ 
+
+-if dependency array is not provided, it will run after every render. 
+-This can lead to problems when you're attempting to update state within your useEffect hook.
+
+example of infintite loop.
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("useEffect running...");
+    setCount(count + 1); // ❌ This causes an infinite loop!
+  });
+
+  return <h1>Count: {count}</h1>;
+
+
+  case II 
+
+setCount(count + 1);
+}, [count]); // ✅ Runs only when `count` changes
+or
+No dependency array  → Runs after every render (can cause infinite loops).
+✔ Empty dependency array ([])  → Runs only once (on mount).
+✔ Dependency array with values → Runs only when those values change.
+=============================================================================
+
+What is the cleanup function in useEffect?
+__________________________________________ 
+
+-sometimes out side effect needs to be shutoff. 
+-for example if we have a countdown timer using the setInterval function, that interval will not stop unless we use the clearInterval function.
+
+-This is what cleanup function is used for. 
+-the side effect cleanup is not required in every case. It is only required in a few cases, such as when you need to stop a repeated side effect when your component unmounts.
+
+-----------------------------------------------------------------------------
+do cleanup function

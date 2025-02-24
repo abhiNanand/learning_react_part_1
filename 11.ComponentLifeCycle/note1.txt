@@ -1,0 +1,137 @@
+https://medium.com/swlh/understanding-component-lifecycle-in-reactjs-ed35d76dab2e
+
+In react, component are designed to follow natural cycle of life cycle.
+They are born(created), grow(updated), die(deleted). 
+This is called componet life cycle.
+
+
+For each phase of component life react provide access to certain built-in events/methods called 
+lifecycle hook life cycle methods.
+
+-Pre-mountling(Initialization)
+ 
+
+Before a component apperas on the screen ,React sets up the component before displaying it on the screen. by classlign a special functon called the constructor.
+
+React needs to get the component ready before showing it in the UI. That means:
+
+-Creating the component instance (like an object from a class).
+-Setting up state and props (if any).
+-Calling the constructor (if it's a class component)
+
+Mounting:This happens when the component is added to the DOM.
+________ 
+https://medium.com/swlh/understanding-component-lifecycle-in-reactjs-ed35d76dab2e
+
+at initial statge we have two life cycle methods availabe to use:
+- component will mount 
+- componentDidMount 
+
+After the constructor is called, componentWillMount is called just before render and is called once in a lifecycle.
+This methods is not used much. better use either contructor or comonentDidMount methods.
+
+If you try to make any API calls or data changes using this.setState in this method, nothing can happen (no updating) in the DOM because componentWillMount is called before the render method.
+
+componentDidMount is called just after the render method. Like componentWillMount, it is called once in a lifecycle. Because the render method has already been called, we can access the DOM. You would use this method to set up any long-running processes or asynchronous processes such as fetching data from API's, and updating data.
+
+3️⃣ What is it used for?
+✅ Fetching data from APIs
+✅ Setting up event listeners
+✅ Running timers (e.g., setInterval(), setTimeout())
+✅ Updating state after mounting
+--------------------------------------------------------------------------
+
+Updating Phase
+______________
+
+Whenever a component’s state and props change from within the React component or through the api or backend, the component is updated by being re-rendered on the page. State and props change depending on a user’s interaction with the component or if new data is passed in.
+
+
+The lifecycle methods available in this phase are:
+
+1. componentWillReceiveProps: this method is invoked when there is change in the props that parent is passing to the component.
+
+2.shouldComponentUpdate: invoke when it is about to re-render.
+-determine should component update or not. by default it returns true.
+-You can compare the old and new props and state by using the nextProps and nextState arguments
+-it prevent unnecessery re-renders. if the chages in props and/or state don't affect what's being shown to user. 
+
+3.componnetWillUpdate: called just after shouldComponentUpdate has finished and just before new component get render. example: if we have to do calculation just before re-rerender.
+-if receives argument like nextProps and nextState.
+
+4.componentDidUpdate- called just after renrendering of components. 
+  you can access previous props ans state with  prevProp and prevState as well as current one.
+
+  used this to update any third party libraries if they happen to update due to the re-render.
+
+
+Unmounting:  last phase in component life cycle. 
+___________ 
+
+-at this stage component gets deleted adn removed from the page.
+-only Method is: componentWillUnmount, which is called just before component gets deleted. It is used to clear anythings that was set up in componentDidMount.
+For example, removing any timers defined in componentDidMount.
+
+
+==========================================================================
+
+React Lifecycle Methods in Functional Components
+================================================ 
+
+
+https://javascript.plainenglish.io/react-lifecycle-methods-in-functional-components-db72e038bd2a
+
+
+Lifecycle of a React component:
+Initial Render or Mount
+Update (When the states used in the component or props added to the component is changed)
+
+
+1. Initial Render or Mount
+
+useEffect(()=>console.log("this is mounter or updated."));
+
+everytime it will print whenever component is mounted and everytime the component sate.
+
+
+
+==============================================================================
+
+Unmounting in React (Simple Explanation)
+What is Unmounting?
+Unmounting is the process when a component is removed from the UI and the DOM. It happens when:
+
+You navigate away from a page.
+A component is removed from the parent component (like conditional rendering).
+The application closes or refreshes.
+
+
+Why is Unmounting Done?
+When a component is unmounted, React removes it from the UI to:
+✅ Free up memory (remove unused data).
+✅ Prevent memory leaks (remove event listeners, intervals, API calls).
+✅ Improve performance (faster UI updates).
+
+
+How to Handle Unmounting in React?
+You can handle unmounting using the useEffect cleanup function (for functional components) or componentWillUnmount (for class components).
+
+import { useEffect } from "react";
+
+const MyComponent = () => {
+  useEffect(() => {
+    console.log("Component Mounted");
+
+    return () => {
+      console.log("Component Unmounted"); // Cleanup code here
+    };
+  }, []);
+
+  return <h1>Hello, World!</h1>;
+};
+
+useEffect runs once when the component mounts.
+The function inside return () => {} runs when the component unmounts.
+
+Here, you can remove event listeners, cancel API calls, or clear intervals.
+==============================================================================

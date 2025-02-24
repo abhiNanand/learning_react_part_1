@@ -1,0 +1,34 @@
+What is Babel?
+Bable is a javascript compiler that translate modern Javascript (ES6+)  code into older javascript that browser can understand.
+
+Why babel needed?
+React uses JSX(Javascript XML) which broweser don't understand natively.
+Babel converts JSX into standard Js, so broweser can run it.
+
+📌 How Babel Works in React
+1️⃣ JSX Conversion
+React code uses JSX, which looks like this:
+const element=<h1>Hello, React! </h1>
+
+browser dont't understand JSX, do babel converts it into this. 
+const element = React.createElement("h1", null, "Hello, React!");
+
+2️⃣ Converts ES6+ Features
+Babel also converts modern JavaScript (like let, const, arrow functions) into older versions for better browser support.
+
+Babel converts it into:
+var greet = function() {
+  console.log("Hello!");
+};
+Now, old browsers can understand it!
+
+
+ 
+Babel with Webpack in React
+When you create a React app with npx create-react-app, Babel is already set up inside Webpack.
+
+Babel uses presets to define which transformations should be applied:
+
+@babel/preset-react → Converts JSX
+@babel/preset-env → Converts modern JS
+

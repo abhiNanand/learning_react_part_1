@@ -1,0 +1,2 @@
+What are node modules?
+most important directories in our react project as React requires nodue_modules to run. The node_module directory is where all the dependencies packages are stored that are used to build and run react project. 

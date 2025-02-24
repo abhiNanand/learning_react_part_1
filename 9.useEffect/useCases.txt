@@ -1,0 +1,139 @@
+Sure! Here are some common **use cases** of `useEffect` with examples:
+
+---
+
+## **1️⃣ Updating the Page Title (Side Effect)**
+👉 Changing `document.title` dynamically based on state.  
+```jsx
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `Clicked ${count} times`; // Updates title when count changes
+  }, [count]);
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={() => setCount(count + 1)}>Click Me</button>
+    </div>
+  );
+}
+```
+**🛠 How it works:**  
+- Updates the browser tab title **every time** `count` changes.
+
+---
+
+## **2️⃣ Fetching Data from an API (API Calls)**
+👉 Fetching data **on component mount** (runs only once).  
+```jsx
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/todos/1") 
+      .then((response) => response.json())
+      .then((json) => setData(json));
+  }, []); // Empty array → Runs only once when the component mounts
+
+  return <h1>{data ? data.title : "Loading..."}</h1>;
+}
+```
+**🛠 How it works:**  
+- Fetches data **only once** when the component loads.  
+
+---
+
+## **3️⃣ Listening to Window Resize Events**
+👉 Detecting window size changes and updating state accordingly.  
+```jsx
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Cleanup on unmount
+    };
+  }, []);
+
+  return <h1>Window Width: {width}px</h1>;
+}
+```
+**🛠 How it works:**  
+- Updates the width state **whenever** the window is resized.  
+- **Cleans up** event listener when the component unmounts.  
+
+---
+
+## **4️⃣ Using useEffect with setInterval (Auto Counter)**
+👉 Runs an effect at a fixed interval.  
+```jsx
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((prevCount) => prevCount + 1);
+    }, 1000); // Increments count every second
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
+
+  return <h1>Counter: {count}</h1>;
+}
+```
+**🛠 How it works:**  
+- Starts a counter **when component mounts**.  
+- **Cleans up** interval on unmount to prevent memory leaks.  
+
+---
+
+## **5️⃣ Listening to Keyboard Events**
+👉 Detecting a key press and updating the state.  
+```jsx
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [key, setKey] = useState("");
+
+  useEffect(() => {
+    const handleKeyPress = (event) => setKey(event.key);
+    
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress); // Cleanup on unmount
+    };
+  }, []);
+
+  return <h1>Last Key Pressed: {key}</h1>;
+}
+```
+**🛠 How it works:**  
+- Updates `key` whenever a key is pressed.  
+- **Cleans up** the event listener when the component unmounts.  
+
+---
+
+### **💡 Key Takeaways from useEffect**
+✔ **Without dependency array (`useEffect(() => {...})`)** → Runs **after every render**.  
+✔ **With empty dependency array (`useEffect(() => {...}, [])`)** → Runs **only once** (on mount).  
+✔ **With dependencies (`useEffect(() => {...}, [state])`)** → Runs **whenever that state/prop changes**.  
+✔ **Cleanup function (`return () => {...}`)** → Removes event listeners, intervals, etc., **to prevent memory leaks**.  
+
+---
+
+These are some of the most common use cases of `useEffect`. Let me know if you need more! 🚀😃

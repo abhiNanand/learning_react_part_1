@@ -1,0 +1,94 @@
+UseCallback
+___________ 
+
+when ever a component re-render,evertime function recreated in memory.
+even if the function logic remains the same, it get a new reference in every render. 
+
+useCallback caches(memoizes)  a function so that it does not get re-created on every render unless its dependencies change. 
+
+Example: in counter app when every we click on add button. evertime increment function is called and it is recreated on every render. 
+
+-Every time setCount updates the state, the component re-renders.
+-Each render creates a new instance of increment, even though the function logic remains unchanged.
+-This is inefficient and can cause unnecessary re-renders in child components if they depend on this function.
+
+=============================================================================
+
+Using useCallback to Cache the function.
+// Function is memoized and does not get recreated on every render
+  const increment = useCallback(() => {
+    setCount((prevCount) => prevCount + 1);
+  }, []);
+
+  Why is this better?
+useCallback caches (memoizes) the increment function.
+Now, the function reference remains the same between renders unless its dependencies (inside []) change.
+This helps in performance optimization, especially when passing functions to child components.
+=============================================================================
+
+Syntax:
+_______ 
+
+const cacheFn = useCallback(fn, dependencies);
+______________________________________________
+
+#fn: the fun that you want to cache.take any argu and return any value.
+React will return (not call!) your function back to you during the initial render. On next renders, React will give you the same function again if the dependencies have not changed since the last render. Otherwise, it will give you the function that you have passed during the current render, and store it in case it can be reused later. React will not call your function. The function is returned to you so you can decide when and whether to call it.
+
+#dependencies array: 
+-when we pass array to useCallback, we are telling react to memoize the function only if the value (dependeinces)  changes.
+-This helps optimize performance by preventing unnecessary re-creation of the function when the dependencies haven’t changed.
+-values include props, state, and all the variables and functions declared directly inside your component body. 
+-The list of dependencies must have a constant number of items and be written inline like [dep1, dep2, dep3].
+-React will compare each dependency with its previous value using the Object.is comparison algorithm.
+
+=============================================================================
+
+Returns:
+________ 
+-on initial render  it returns fn. function we had passed.
+-on subsequent render, it compares the dependeinces with previous values using Object.is. 
+       If the dependencies have not changed, React will return the cached function from the last render, instead of recreating it.
+
+        If any of the dependencies have changed, React will recreate the function and return the new version.
+
+=============================================================================
+How to use
+__________ 
+
+
+to cache a function between re-render, wrap its definations into the useCallback Hook:
+
+import { useCallback } from 'react';
+
+function ProductPage({ productId, referrer, theme }) {
+  const handleSubmit = useCallback((orderDetails) => {
+    post('/product/' + productId + '/buy', {
+      referrer,
+      orderDetails,
+    });
+  }, [productId, referrer]);
+
+
+  ===========================================================================
+
+  #How is useCallback related to useMemo? 
+  The main difference is that useMemo returns a memoized value and useCallback returns a memoized function.
+  ===========================================================================
+
+  #Note:
+  If you forget the dependency array, useCallback will return a new function every time:
+  ==========================================================================
+
+  Avoid using `useCallback` when:
+
+1. There's no performance benefit or unnecessary re-renders.
+2. The function doesn't change often.
+3. The component is small or the logic is simple.
+4. The function isn’t passed to child components.
+5. Dependencies change frequently, making memoization ineffective.
+=============================================================================
+
+When you define a function inside a React component, it gets recreated on every render. This means that each render produces a new function reference, which can sometimes lead to unnecessary re-renders in child components.
+
+=============================================================================

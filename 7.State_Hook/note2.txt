@@ -1,0 +1,118 @@
+here is a example we think that when click on  button number will increase three times because useState had been used three times to increment the value. 
+
+import { useState } from 'react';
+
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+func increment()
+{
+  console.log(number);
+        setNumber(number + 1);  //0+1 =1
+        setNumber(number + 1); //0+1=1
+        setNumber(number + 1); // 0+1
+    console.log(number);
+}
+  return (
+    <>
+      <h1>{number}</h1>
+      <button onClick={increment}>+3</button>
+    </>
+  )
+}
+
+but after clicking on the button there, it will increment by 1 only.
+
+line 10 and 14 same output dega vo v latest wala nhi dega previous wala hi dega.
+
+yha pr increment nhi ho rha hai q ki
+number to 0 hi rahega. tho har baar 0+1 ho rha hai.
+jb ye event complete hoga tho ye state re-render karega.
+tho update value 1 hi hoga.
+
+
+ 
+ 
+function increment()
+{
+        console.log(number);    // 0
+        setNumber(number+5);   //0+5
+        setNumber(number+10); // 0+10
+        setNumber(number-1); //0-1
+        console.log(number);// 0
+        
+}
+
+ 
+
+for this case only not for different case. 
+
+  let [number , setNumber] = useState(1);
+ 
+function increment()
+{
+        console.log(number);
+        setNumber(number=number+5);// number = 0+5=5
+        setNumber(number=number+5);// number = 5+5=10
+        setNumber(number=number+5);// number = 10+5=15
+      
+        console.log(number);
+        
+}
+
+ish case me hum number ko baar baar update kartey ja rhe hai.
+aur ye function complete hone ke baad hi re-render hoga. 
+and 15 show hoga.
+
+Note: agar setTimeout v laga denge tho v change nhi number ka previos value hi print hoga. 
+===========================================================
+Please see this case 
+
+case 1;
+  setNumber(number =>number + 5);  //set 5
+        setNumber(number =>number + 5); //set 10
+        setNumber(number + 1  );//set 1
+        console.log(number);
+
+case 2;
+        setNumber(number + 2  ); set 2
+        setNumber(number =>number + 5); set 7
+        setNumber(number=>number); set 7;
+
+        ye jo arrow function hai ye ye dekhta hai previosly kya set ho rha hai. tho jo number hai vo pass keya gya hai taki ye dekh sake ke previously kya set ho rha hai. vo queue me se dekh leta hai. 
+
+==========================================================
+
+export default function App()
+{
+
+console.log("hello");
+return ;
+
+}
+
+//initially hello will be printerd in console 2 times . 
+This happens due to React Strict Mode in development.
+React intentionally renders components twice in development mode. This helps detect unexpected side effects in your components.
+
+
+React may decide to skip re-rendering if the update does not cause a visible change.
+
+example. jb hum function me conosle.log("hello") likhenge tho hamesha ye sayad nhi aayega.
+
+
+
+like ish case me "counter function runs" har baar print nhi hoga q ki screen pr sirf 5 hi rahega chaheye jo v kr lo. 
+
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+console.log(number);
+console.log("counter function runs");
+ 
+function increment()
+{
+        console.log(number);
+        setNumber(5);
+        
+}
+============================================================

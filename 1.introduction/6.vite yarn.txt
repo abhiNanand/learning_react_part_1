@@ -1,0 +1,45 @@
+
+Steps to create react app using vite:
+: npm create vite@latest
+:y
+✔ Project name: … vite-my-app
+✔ Select a framework: › React
+✔ Select a variant: › JavaScript
+:cd vite-my-app
+:npm install
+:npm run dev
+
+
+what is vite?
+Vite is a modern build tool that is  much faster than traditional bundlers like webpack. 
+ It is optimized for speed and efficiency when developing React, Vue, and other JavaScript applications.
+
+ 🔹 Why Do We Use Vite?
+Webpack is great but slow during development because it bundles everything before starting the server. Vite is super fast because it does not bundle files upfront.
+
+Vite uses ES Modules (ESM) and Hot Module Replacement (HMR), making development much faster!
+
+=============================================================================
+ How to Create a React App Using Vite?
+📌 Step 1: Create a New React App with Vite
+Run the following command:
+
+
+               npm create vite@latest my-vite-app --template react
+
+🔹 npm create vite@latest → Uses the latest Vite version
+🔹 my-vite-app → Your project folder
+🔹 --template react → Sets up a React app
+
+
+📌 Step 2: Install Dependencies 
+cd my-vite-app
+npm install
+
+📌 Step 3: Start the Development Server
+npm run dev
+
+
+Vite is faster, simpler, and better for React development compared to Webpack. If you are starting a new React project, Vite is highly recommended! 🚀
+
+

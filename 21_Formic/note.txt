@@ -1,0 +1,398 @@
+https://formik.org/docs/tutorial#validation
+
+
+Formic is a library that helps for 3 parts:
+1.getting values in and out of the form state
+2.Validation and error message
+3.handling form submission.
+
+Why we are not using redux form?
+
+-redux-form 22.5 kb but formit is 12.7kb.
+-Smaller size means faster load times and better performance.
+
+Forms Don’t Need Redux
+
+Forms are temporary—users fill them out and submit them.
+Redux is great for managing global state (like user authentication), but form state is usually local to the component.
+According to Dan Abramov (creator of Redux), using Redux for forms is unnecessary.
+Performance Issues
+
+Redux-Form updates Redux state on every keystroke.
+This means your entire Redux store gets re-calculated every time you type in an input field.
+This slows down your app, especially as it grows.
+==============================================================================
+
+formik installation
+___________________ 
+You can install Formik with NPM, Yarn, or a good ol' <script> via unpkg.com.
+
+NPM
+
+ npm install formik --save
+or
+
+ yarn add formik
+ =============================================================================
+ import React from "react";
+import { useFormik } from "formik";
+
+export default function Form()  {
+  // useFormik() initializes form state and provides helper methods
+  const formik = useFormik({
+    initialValues: {
+      email: "", // Initial state for the email input
+    },
+    onSubmit: (values) => {
+      // alert(JSON.stringify(values, null, 2)); // Alerts form data when submitted
+//   alert(values, null, 2); //[object object]
+  alert(values);
+
+  Note:
+//value is object. Why Is values Showing [object Object] in the Alert?
+In JavaScript, when you pass an object directly to alert(), it converts the object to a string using .toString(). By default, objects are converted to the string "[object Object]".
+    },
+  });
+
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <label htmlFor="email">Email Address</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        onChange={formik.handleChange} // Tracks input changes
+        value={formik.values.email} // Binds input value to state
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+
+useFormik(): A hook that provides state and helper functions to manage the form.
+-initialValues: The default values of form fields.
+-handleSubmit: Handles form submission.
+-handleChange: Updates form state when an input changes.
+-values: Stores the current values of form fields.
+
+Why is this useful?
+Normally, you would manage form state manually using useState(). With Formik, this is done automatically, reducing boilerplate code.
+
+   
+==============================================================================
+Why null, 2 is used in JSON.stringify(values, null, 2)?
+The JSON.stringify() function converts a JavaScript object into a JSON-formatted string. The second and third arguments control how the JSON output is formatted.
+
+Syntax of JSON.stringify()
+js
+Copy
+Edit
+JSON.stringify(value, replacer, space)
+value: The object to stringify.
+replacer (optional, default null): Used to filter specific properties or modify values before conversion.
+space (optional, default 0): Defines the number of spaces for indentation (pretty-printing).
+============================================================================
+Adding some more inputs. 
+
+import React from 'react';
+import { useFormik } from 'formik';
+
+
+export default function Form() {
+
+    const formik = useFormik({
+
+        initialValues: { firstname: '', lastname: '', email: '' },
+        onSubmit: (values) => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    }
+    );
+    
+    return(
+        <form onSubmit={formik.handleSubmit}>
+            <label htmlFor="firstname">First Name</label>
+            <input id="firstname" name="firstname" type="text" onChange={formik.handleChange} value={formik.values.firstname}/>
+
+            <label htmlFor="lastname">Second Name</label>
+            <input id="lastname" name="lastname" type="text" onChange={formik.handleChange} value={formik.values.lastname}/>
+
+            <label htmlFor="email">Email Address</label>
+            <input id="email" name="email" type="email" onChange={formik.handleChange} value={formik.values.email}/>
+            
+            <button type="submit">Submit</button>
+        </form>
+    );
+
+}
+============================================-=================================
+
+Next Steps: Adding Form Validation
+The current form does not validate user input. The next step in learning Formik is adding validation with Yup. Would you like to move forward with that? 🚀
+===========================================-==================================
+Formik keeps track of not only your form’s values, but also its validation and error messages. To add validation with JS, let’s specify a custom validation function and pass it as validate to the useFormik() hook. If an error exists, this custom validation function should produce an error object with a matching shape to our values/initialValues.
+
+
+==============================================================================
+
+//formic 3  validation
+
+
+// import React from 'react';
+// import { useFormik } from 'formik';
+
+
+
+// const validate = (values) => {
+//     const errors = {};
+//     if (!values.firstname) {
+//         errors.firstname = 'Required';
+//     }
+//     else if (values.firstname.length > 15) {
+//         errors.firstname = 'Must be 15 character or less';
+//     }
+
+//     if (!values.lastname) {
+//         errors.lastname = 'Required';
+//     }
+//     else if (values.lastname.length > 15) {
+//         errors.lastname = 'Must be 15 character or less';
+//     }
+
+
+//     if (!values.email) {
+//         errors.email = 'Required';
+//     }
+//     else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+//         errors.email = 'Invalid email address';
+//     }
+
+//     return errors;
+
+// }
+
+
+
+// export default function Form() {
+
+//     const formik = useFormik({
+
+//         initialValues: { firstname: '', lastname: '', email: '' },
+//         validate,
+//         onSubmit: (values) => {
+//             alert(JSON.stringify(values, null, 2));
+//         },
+//     }
+//     );
+
+//     return (
+//         <form onSubmit={formik.handleSubmit}>
+//             <label htmlFor="firstname">First Name</label>
+//             <input id="firstname" name="firstname" type="text" onChange={formik.handleChange} value={formik.values.firstname} />
+
+//             {formik.errors.firstname ? <div>{formik.errors.firstname}</div> : null}
+
+//             <label htmlFor="lastname">Second Name</label>
+//             <input id="lastname" name="lastname" type="text" onChange={formik.handleChange} value={formik.values.lastname} />
+
+//             {formik.errors.lastname ? <div>{formik.errors.lastname}</div> : null}
+
+//             <label htmlFor="email">Email Address</label>
+//             <input id="email" name="email" type="email" onChange={formik.handleChange} value={formik.values.email} />
+
+//             {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+
+//             <button type="submit">Submit</button>
+//         </form>
+//     );
+
+// }
+
+==============================================================================
+
+How does Formik call validate automatically?
+Formik automatically runs the validate function whenever any of the following happens:
+
+The form initializes.
+
+When useFormik is first executed, Formik calls validate(initialValues).
+A field’s value changes (onChange).
+
+When you type in an input field, Formik updates values and then calls validate(values).
+
+A field loses focus (onBlur).
+
+If you add onBlur={formik.handleBlur} to input fields, Formik will also validate when a field is blurred.
+How does Formik internally handle this?
+Formik internally keeps track of the form state (values, errors, etc.). It calls the validate function whenever values change, and it updates the errors object accordingly.
+
+When you type something into an input field (onChange is triggered), Formik:
+
+Updates values.
+Calls validate(values).
+Stores any validation errors in formik.errors.
+If validation fails, the error messages appear because of this logic:
+
+js
+Copy
+Edit
+{formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+How can we control when validation runs?
+By default, Formik runs validation on every keystroke (onChange).
+But you can change this behavior using validateOnChange and validateOnBlur:
+
+==============================================================================
+
+
+Visited fields
+---------------
+
+hamara jo validation function hai vo har ek keystoke pr run kr rha and ushi time output show kr rha hai form ke niche. this is not a good user experience.
+Jis field me visit nhi keye hai usme v error show kr rha hai.
+
+-so hame jis v field pr visit kr rhe hai uska track rakhna hoga. Formik keeps track of fields that have been visited.
+
+-stores information in an object called #touched#. key of touch are filed names, and its values are boolean true/false. 
+
+-we pass formik.handleBlur to each input onBlur prop. it works similary to formik.handleChange in that it uses the name of the attribute to figure out which field to update.
+
+=============================================================================
+
+Onblur event:
+------------ 
+-The onblur event occurs when an HTML element loses focus.
+-The onblur event is often used on input fields.
+-The onblur event is often used with form validation.
+
+===========================================================================
+
+What we had used in the code. 
+
+<label htmlFor="firstname">First Name</label>
+            <input id="firstname" name="firstname" type="text" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.firstname} />
+
+            {formik.touched.firstname && formik.errors.firstname ? <div>{formik.errors.firstname}</div> : null}
+
+
+I had added two things.
+
+(i) onBlur={formik.handleBlur} - ye hum field pr visit kar ke khi aur jayenge tab ye funciton execute hoga.
+(ii)formik.touched.firstname && formik.errors.firstname - agar touched hua hoga tbhi ye chelega nhi tho nhi chalega. agar hum on blur use nhi karege to filed ke blur hote hi niche required print nhi hoga . submit karne pr hoga. 
+agar hum onBlur use karenge tho field se blur hote hi require print hoga agar field empty hoga tho.
+
+==============================================================================
+
+Schema Validation with Yup
+-------------------------- 
+we can write our own validators or we can also use 3rd party helper library.
+We can use Yup library. 
+
+Yup  - It has an api. but it small and fast. 
+---
+
+to install Yup 
+npm install yup --save 
+
+Formik has a special configuration prop for yup called #validationSchema#
+which will automatically transform Yup's validation error messages into pretty object whose keys match values/initial values/ touched.
+
+import * as Yup from 'yup';
+
+add this in useFormik 
+
+validationSchema: Yup.object({
+       firstName: Yup.string()
+         .max(15, 'Must be 15 characters or less')
+         .required('Required'),
+       lastName: Yup.string()
+         .max(20, 'Must be 20 characters or less')
+         .required('Required'),
+       email: Yup.string().email('Invalid email address').required('Required'),
+     })
+
+     -===============-=============-=====--=======-==============-===========-
+
+     Reducing Boilerplate 
+     -------------------- 
+
+     getFieldProps()-
+     --------------- 
+
+     -The code above is very explicit about exactly what Formik is doing. onChange -> handleChange, onBlur -> handleBlur, and so on. 
+
+     - to save you time, useFormik() returns a helper method called formik.getFieldProps().  to make it faster to wire up inputs.
+
+     -Given some field-level info, it returns to you the exact group of onChange, onBlur, value, checked for a given field. You can then spread that on an input, select, or textarea.
+
+
+     we had to replace 
+        <label htmlFor="firstname">First Name</label>
+       <input id="firstname" name="firstname" type="text" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.firstname} />
+
+     to 
+
+      <label htmlFor="firstname">First Name</label>
+            <input id="firstname" type="text" 
+            {...formik.getFieldProps('firstname')}
+            />
+
+            ==================================================================
+
+Leveraging React Context:
+
+https://formik.org/docs/tutorial#validation:
+
+4 example left
+---------------
+
+continue:
+---------
+
+==============================================================================
+React Context 
+--------------
+
+1.Prop Passing (without Context)
+-initially we had to manaulaay pass down handlers like onChange, onBlur, etc. to every input field.
+
+-we need to use getFieldProps() to get these properties , which can make the code repetitive.
+
+2. Using React Context for Simplicity
+-Instead of passing these props manually, Formik uses React Context.
+Context allows child components to directly access the parent <Formik /> component’s state and methods without prop drilling.
+
+3.Formik Components that Use Context
+
+<Formik />: The main provider that holds the form state and handlers.
+<Form />: A wrapper component that behaves like <form>.
+<Field />: A wrapper for <input>, <select>, etc., that automatically connects with Formik's state.
+<ErrorMessage />: Displays validation error messages linked to a field.
+
+4. How Context Works Header
+  __________________________ 
+
+  Without Context: 
+  ----------------
+   <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        name="email"
+        value={values.email}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
+      <button type="submit">Submit</button>
+    </form>
+
+    With Context 
+    ------------ 
+
+    <Form>
+    <Field type="email" name="email" />
+    <ErrorMessage name="email" />
+    <button type="submit">Submit</button>
+  </Form>
+  ============================================================================
+
+  do the left examples. 

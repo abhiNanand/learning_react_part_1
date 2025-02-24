@@ -1,0 +1,30 @@
+https://react.dev/learn/render-and-commit#step-1-trigger-a-render
+
+
+“Rendering” means that React is calling your component, which is a function.
+
+Render and Commit
+_________________ 
+
+Before your components are displayed on screen, they must be rendered by React. 
+
+What is "Render" in React?
+In react rendering means calling a component  function to determine what should be shown on screen.
+It happens whenever 
+1. a componenet appear on screen for first time-initial render done by createRoot in index.js.
+2. A component state or prop change,
+3. A component parent rerender, causing child to re-render. 
+
+How to Optimize Rendering?
+Since React re-renders components when state or props change, excessive renders can affect performance. Here’s how to optimize:
+
+🔹 Use React.memo → Prevents re-renders if props haven’t changed.
+Use useCallback & useMemo → Prevents unnecessary function re-creation in renders.
+------------------------------------------------------------
+
+Key Takeaways
+✅ Rendering means React calls a component function to determine what should be displayed.
+✅ State and prop changes trigger re-renders.
+✅ React efficiently updates the UI using a virtual DOM diffing process.
+✅ Optimizations like React.memo and useCallback can prevent unnecessary renders.
+------------------------------------------------------------

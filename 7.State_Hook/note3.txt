@@ -1,0 +1,22 @@
+UseState
+________
+
+useState is a React Hook that lets you add a state variable to your component.
+
+const [state, setState] = useState(initialState)
+-initial state ke jagah function v pass kar saktey hai,koi v types pass kar saktey hai.
+-initial state is ignored after first render.
+-If you pass a function as initialState, it will be treated as an initializer function. It should be pure, should take no arguments, and should return a value of any type.
+
+-can only call at top level of component
+-can't call it inside loops or conditons
+-If you need that, extract a new component and move the state into it.
+-In Strict Mode, React will call your initializer function twice
+-set functions do not have a return value.
+
+
+https://react.dev/reference/react/useState
+complete the left topcis.
+
+
+-You can put objects and arrays into state. In React, state is considered read-only, so you should replace it rather than mutate your existing objects. For example, if you have a form object in state, don’t mutate it:

@@ -1,0 +1,31 @@
+UseRef is a react hook that stores a value. without causing a render when value changes.
+Often hold dom elements or store values that don't affect rendering.
+returns a ref object.
+
+Why do we need useRef?
+Normally, when you use useState in React, updating the state causes the component to re-render. But sometimes, you need to store a value that should not trigger a re-render. This is where useRef helps!.
+
+Using useRef to store value.
+____________________________ 
+
+const countRef=useRef(0); //created the value but does not cause a re-render.
+
+const increment = ()=>{
+    conuntRef.current+=1; //// Updates the value but does NOT cause a re-render
+
+     console.log("Count (useRef):", countRef.current);
+}
+
+return (
+    <div>
+         <button onClick={increment}>Increment</button>
+    </div>
+);
+
+##
+Note: value = value +1 se error aayega q ki value ek object hai. 
+iseley value.current use keya hai. q ki currect defult key hai jisme jo hamara initial value hai vo store ho rha hai. 
+
+##
+Note:
+ham log without ref v same kaam kar saktey hai , ek let val=0 se variable bana fir button me function laga kr increment krtey jayenge vo update v ho jayega bina render keye .  but isme ek problem ye hai ki value reset ho jayege jb v hum kvi render keye tho. lekin useRef ke case me value safe rahege render karne pr v.aur latest value screen pr v show ho jayege agar render keye tho. 

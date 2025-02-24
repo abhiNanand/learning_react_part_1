@@ -1,0 +1,53 @@
+useMemo cache(memoize) the result of calcualtion between re-render.
+
+
+syntax
+const cacheValue = useMemo(calculateValue, dependeinces);
+
+import { useMemo } from 'react';
+
+function TodoList({ todos, tab }) {
+  const visibleTodos = useMemo(
+    () => filterTodos(todos, tab),
+    [todos, tab]
+  );
+  // ...
+}
+
+Parameters:
+___________ 
+
+calCulatedValue
+
+definations
+____________
+
+ This is the function that computes the value you want to cache.
+
+characteristics:
+________________
+
+Pure:  It should not have side effects or rely on external state outside the function. It should always return the same result when given the same input.
+Takes no argument :  The function does not accept arguments, it only uses values within its scope (like state or props).
+Return value:  return any type of value (stirng, number, array, object, etc).
+
+Behaviour: 
+___________ 
+
+During the initial render, React will execute this function and store its result. On subsequent renders, React will return the cached result, unless one of the dependencies has changed. If a dependency changes, it will recalculate the value by calling calculateValue again.
+
+Dependencies:
+This is the list of values that the calculateValue function depends on. These are typically props, state, or any other values referenced inside calculateValue.
+
+Characteristics:
+ Dependencies must be stable: The dependencies list should  remain constant across renders(same length and order). 
+ =========================================================================
+
+ Returns:
+ ________ 
+
+ returns result of calculate Value initially
+ during next renders, it will either return an already stored value from last render(if dependencies haven’t changed), or call calculateValue again, and return the result that calCulatedValue has returned. 
+
+=============================================================================
+

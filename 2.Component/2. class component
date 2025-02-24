@@ -1,0 +1,32 @@
+
+import React, {Component} from 'react';
+
+class Welcome extends Component
+{
+
+
+render()
+{
+
+
+    return <h1>Hello, {this.pops.name}!</h1>;
+}
+
+
+}
+export default Welcome;
+
+It extends Component from React.
+It has a render() method that returns JSX.
+this.props is used to access props.
+
+Why Are Class Components Not Used Now? (Disadvantages)
+
+with react 16.8, Hooks(useState,useEffec,etc) were introduced, allowing functional component to manage state and lifecycle witout needing a class. 
+
+Disadvantages of Class Components
+❌ More Boilerplate Code → Need constructor, this.state, and this.setState().
+❌ Complex Lifecycle Methods → componentDidMount, componentDidUpdate, componentWillUnmount are separate.
+❌ Poor Code Readability → More lines of code make it harder to manage.
+❌ Binding Issues → Methods need to be bound in the constructor to use this.
+❌ Less Performance Efficient → Functional components with Hooks are optimized internally.

@@ -1,0 +1,106 @@
+UseReducer
+___________
+
+
+Reducer is a pure function that determines how the state of an applicaiton should change in response to an action.  
+reducer pattern:
+(state,action)=>new State )
+
+How does a reducer work?
+It takes the current state and an action as arguments.
+It processes the action and returns a new state based on the action type.
+The state is immutable, meaning it does not modify the existing state but returns a new state object.
+
+=============================================================================
+https://www.freecodecamp.org/news/react-usereducer-hook/
+
+useState and useReducer looks similar in some ways.
+
+
+How Does useReducer Compare to the useState Hook?
+-They both involve a current state value, and have a function that triggers  a state update and an initial state value passed as an argument.
+
+-The useReducer is an alternative to the useState hook for managing state in functional components. 
+
+-The useReducer hook is better suited for managing complex state logic while useState is best for simple state changes.
+
+=============================================================================
+
+Why we use useReducer 
+
+When the state logic becomes too complicated or when you need to handle state changes in more predictable and manageable way,the useReducer hook is best for this.
+
+=============================================================================
+What is useReducer?
+
+const [state,dispatch] = useReducer(reducer, initialState);
+
+-a useReducer is a hook in react that allows you to add reducer to your component.
+-takes reducer function and initailState as argument. 
+-return array of the current state and a dispatch function.
+
+const [state,dispatch] = useReducer(reducer,initialState)
+~state: represent the current value.
+
+~dispatch: is a function send action to reducer. 
+
+~reducer:  function that updates state based on action. updated. . It takes state and action as arguments and returns the next state.
+The reducer function is always declared outside of your component and takes in a current state and action as arguments.
+
+function reducer(state,action)
+{
+
+}
+
+~initialState: house the initial value can be of any type.
+
+
+=============================================================================
+Deep dive into useReducer
+__________________________ 
+
+
+reducer: is a function that house  all the logic of how the state gets updated. . It takes state and action as arguments and returns the next state.
+The reducer function is always declared outside of your component and takes in a current state and action as arguments.
+
+function reducer(state,action)
+{
+    
+}
+An action is an object that typically has a type property which identifies a specific action. Actions describe what happens and contains information necessary for the reducer to update the state.
+
+Conditional statements are used to check the action types and perform a specified operation that would return a new state value. Conditional statements like if and switch can be used in reducers.
+
+https://www.freecodecamp.org/news/react-usereducer-hook/
+
+
+=============================================================================
+
+Difference between useReducer and useState
+__________________________________________ 
+
+in use state: 
+
+3 bananey parege
+
+const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
+
+  in useReducer
+  _______________ 
+
+  1 se hi ho jayega. 
+
+  const initialState = {
+  name: "",
+  email: "",
+  error: "",
+};
+
+also use state use when states dependes on previous state. 
+involve multiple actions.
+========================================================================
+
+check examples from react documentry of todolist

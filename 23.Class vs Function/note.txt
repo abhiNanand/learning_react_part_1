@@ -1,0 +1,120 @@
+https://www.geeksforgeeks.org/differences-between-functional-components-and-class-components/
+
+class:
+
+How to create class
+------------------- 
+
+
+ class Employee {
+    constructor(name, id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    get details() {
+        return `Name: ${this.name}, ID: ${this.id}`;
+    }
+}
+
+class Manager extends Employee {
+    constructor(name, id, department) {
+        super(name, id); // Call parent class constructor
+        this.department = department;
+    }
+
+    displayDetails() {
+        super.displayDetails(); // Call parent method
+        console.log(`Department: ${this.department}`);
+    }
+}
+
+
+let Emp1 = new Employee("abhishek", 1);
+console.log(Emp1.details); // Output: Name: abhishek, ID: 1
+
+let manager = new Manager("Abhishek", 1, "IT");
+manager.displayDetails();
+
+
+
+==============================================================================
+Differences between Functional Components and Class Components
+--------------------------------------------------------------
+
+
+class Car extends React.Componenet 
+{
+    render()
+    {
+        return <h2> Hi, I am a Car! </h2> ;
+    }
+}
+
+counter using Class Components 
+------------------------------ 
+
+import React , {Component} from 'react';
+
+class ClassComponnet extends React.Component
+{
+
+constructor()
+{
+
+    super(); Calls parent class (React.Componnet) constructor 
+    this.state = {count:0}; //Initial state 
+
+}
+
+}
+
+render()
+{
+     return(
+        <>
+        <h2>{this.state.count}</h2>
+        <button onClick = {this.increase}>Add </button>
+        </>
+     );
+}
+
+==============================================================================
+
+If you write a function component and realize you need to add some state to it, previously you had to convert it to a class component. Now you can use a Hook inside the existing function component to manage the state and no need to convert it into the Class component.
+
+Hooks are a new addition to React 16.8. They let you use state and other React features without writing a class. 
+
+Instead of Classes, one can use Hooks in the Functional component as this is a much easier way of managing the state. Hooks can only be used in functional components, not in-class components.
+==============================================================================
+
+Functional Components vs Class Components:
+------------------------------------------ 
+
+
+functional componnet: it accept props as argument and return react element(jsx).
+class component: require to extend from React.Component and create a render function that returns a react element. 
+---------------------
+
+-Hooks can be easily used.
+-there is no render method used inside functional component. 
+- it runs from top to bottom. once the function is returned it can't be kept alive.
+-react lifecycle methods cannot be used in functional component. 
+- it is stateless component- because they simply accept data and display them in some form. 
+
+
+class component:
+----------------
+
+-require syntax in a component to implement hook.
+-it must must require render method returning JSX.
+-it run and invoked dependending on the phase of the class component.
+-react life cycle model can be used inside class component(for example componentDidMount).
+-also known as stateful component because they implement logic and state.
+Example:
+const [name,SetName]= React.useState(' ')
+Example 
+constructor(props) {
+   super(props);
+   this.state = {name: ' '}
+}

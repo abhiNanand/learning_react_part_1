@@ -1,0 +1,21 @@
+form
+____
+
+<form action={search}>
+  <input name="query" />
+  <button type="submit>Search</button>
+</form>
+
+action: 
+-a URL or function
+-When a URL is passed to action the form will behave like the HTML form component. 
+-When a function is passed to action the function will handle the form submission.
+-The function passed to action may be async and will be called with a single argument containing the form data of the submitted form. 
+
+
+ Form Validation in react
+ ________________________ 
+
+
+ Form validation is the process of ensuring that the data entered by a user in a form meets specific requirements before it submitted. 
+ This prevent incorrect, incomplete, or malicious data from being processed.

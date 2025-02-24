@@ -1,0 +1,161 @@
+“Rendering” is React calling your components
+
+Your components will often need to display different things depending on different conditions. 
+
+In react we can conditionaly render JSX using if statement,&&, and ?: operator.
+
+by using if consdtion. 
+function Item({ name, isPacked }) {
+  if (isPacked) {
+    return <li className="item">{name} ✅</li>;
+  }
+  return <li className="item">{name}</li>;
+}
+
+export default function PackingList() {
+  return (
+    <section>
+      <h1>Sally Ride's Packing List</h1>
+      <ul>
+        <Item 
+          isPacked={true} 
+          name="Space suit" 
+        />
+        <Item 
+          isPacked={true} 
+          name="Helmet with a golden leaf" 
+        />
+        <Item 
+          isPacked={false} 
+          name="Photo of Tam" 
+        />
+      </ul>
+    </section>
+  );
+}
+___________________________________________________________________________________
+
+to show only unpacked item use
+if (isPacked) {
+    return null;
+
+    ---------------------------------------------------
+
+using ternary operator
+______________________ 
+
+return <i className=item >       {(ispacked)? name + "tick" : name }</i>;
+
+
+___________________________________________________________________________________
+
+Logical And operator (&&)
+_________________________ 
+return (
+  <li className="item">
+    {name} {isPacked && '✅'}
+  </li>
+);
+
+A JavaScript && expression returns the value of its right side (in our case, the checkmark) if the left side (our condition) is true. But if the condition is false, the whole expression becomes false. React considers false as a “hole” in the JSX tree, just like null or undefined, and doesn’t render anything in its place.
+
+
+==============================================================
+
+Rendering Lists:
+________________ 
+
+You will learn
+How to render components from an array using JavaScript’s   map()
+How to render only specific components using JavaScript’s filter()
+When and why to use React keys
+--------------------------------------------------------------
+
+1. take data into an array:
+const people = [
+  'Creola Katherine Johnson: mathematician',
+  'Mario José Molina-Pasquel Henríquez: chemist',
+  'Mohammad Abdus Salam: physicist',
+  'Percy Lavon Julian: chemist',
+  'Subrahmanyan Chandrasekhar: astrophysicist'
+];
+
+
+2.Map the people members into a new array of JSX nodes, listItems:
+const listItems = people.map(person => <li>{person}</li>);
+
+Return listItems from your component wrapped in a <ul>:
+return <ul>{listItems}</ul>;
+
+
+
+example. 
+const people = [
+  'Creola Katherine Johnson: mathematician',
+  'Mario José Molina-Pasquel Henríquez: chemist',
+  'Mohammad Abdus Salam: physicist',
+  'Percy Lavon Julian: chemist',
+  'Subrahmanyan Chandrasekhar: astrophysicist'
+];
+
+export default function List() {
+  const listItems = people.map(person =>
+    <li>{person}</li>
+  );
+  return <ul>{listItems}</ul>;
+}
+==============================================================
+To show only people who is chemist
+
+const people = [{
+  id: 0,
+  name: 'Creola Katherine Johnson',
+  profession: 'mathematician',
+}, {
+  id: 1,
+  name: 'Mario José Molina-Pasquel Henríquez',
+  profession: 'chemist',
+}, {
+  id: 2,
+  name: 'Mohammad Abdus Salam',
+  profession: 'physicist',
+}, {
+  id: 3,
+  name: 'Percy Lavon Julian',
+  profession: 'chemist',  
+}, {
+  id: 4,
+  name: 'Subrahmanyan Chandrasekhar',
+  profession: 'astrophysicist',
+}];
+
+1.
+const items = people.filter((item)=>item.profession=='chemist')
+
+2.
+Now array.map over chemists
+
+ 
+
+3.Lastly, return the listItems from your component:
+
+============================================================================================================================
+
+Displaying several DOM nodes for each list item 
+_______________________________________________ 
+
+-What do you do when each item needs to render not one, but several DOM nodes?
+
+The short <>...</> Fragment syntax won’t let you pass a key, so you need to either group them into a single <div>, or use the slightly longer and more explicit <Fragment> syntax:
+
+import { Fragment } from 'react';
+
+// ...
+
+const listItems = people.map(person =>
+  <Fragment key={person.id}>
+    <h1>{person.name}</h1>
+    <p>{person.bio}</p>
+  </Fragment>
+);
+

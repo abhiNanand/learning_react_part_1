@@ -1,0 +1,66 @@
+What is React?
+React is a javacript library used for buidling user interface, mainly for single page application (SPA's). 
+It is component based;
+Component- Component is a reusable, independent piece of UI. It is like building block that helps in creating complex UIs by combining multiple smaller parts.
+Eg-
+
+function Greeting() {
+  return <h1>Hello, World!</h1>;
+}
+=============================================================================
+
+Why did we need react?
+-before react it was hard to build web application.
+-DOM Manipulation was Slow - Updating the UI manually with Javascript (using document.getElementById or document.querySelector) was inefficient.
+-Messy Code -  Large applications had a lot of code mixed together, making it hard to manage and debug.
+-No Reuseability - Developers had to rewrite the same UI code in different places.
+-Difficult State Management -  Keeping track of UI changes and user interactions was complicated.
+
+How React Solves these problem?
+✅ Fast UI Updates (Virtual DOM) – React updates only the changed parts of the page, making apps faster.
+✅ Component-Based Architecture – UI is divided into small, reusable parts (components), making code clean and manageable.
+✅ One-Way Data Flow – React keeps track of data changes and updates the UI automatically, reducing errors.
+✅ Easy to Learn & Use – React uses JavaScript and JSX (similar to HTML), making it developer-friendly.
+In short, React makes web development faster, cleaner, and more efficient! 
+
+
+
+Sandboxes for react - A sandbox is an isolated testing environment that enables users to run programs or open files
+https://codesandbox.io/s/new
+https://stackblitz.com/fork/react
+=============================================================================
+
+Installation
+____________
+
+to create project call my-app, run this command
+
+Create a new React App- npx create-react-app my-app
+Navigate to Your Project   - cd my-app
+Start the React App- npm start
+
+
+If you've previously installed create-react-app globally via npm install -g create-react-app, we recommend you uninstall the package using npm uninstall -g create-react-app or yarn global remove create-react-app to ensure that npx always uses the latest version.
+
+✅ With TypeScript:
+npx create-react-app my-app --template typeScript
+
+
+by using vite we can also create 
+________________________________
+
+npm create vite@latest my-app
+cd my-app
+npm install
+npm run dev
+
+Much faster than create-react-app.
+✔️ Supports React, TypeScript, Vue, Svelte, and more.
+
+✅ With TypeScript:
+npm create vite@latest my-app --template react-ts
+
+Which One Should You Choose?
+🏆 Beginner → create-react-app
+⚡ Faster Dev Experience → Vite
+🔧 Custom Setup → Manual Configuration

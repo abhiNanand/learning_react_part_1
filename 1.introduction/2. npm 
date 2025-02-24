@@ -1,0 +1,123 @@
+NPM - Node Package Manager
+One of the major factors of Node's success is npm - its popular package manager, which allows JavaScript developers to share useful packages like lodash and moment quickly and easily.
+
+What is NPM?
+npm (Node Package Manager) is a tool that helps install, manage, and update JavaScript packages (libraries) for your projects.
+It is a default package manager for Javascirpt's runtime Node.js .
+ 
+Think of npm as a Play Store or App Store but for JavaScript libraries. Instead of manually writing everything, you can install pre-built code to speed up development.
+
+what is do?
+1. install packages. Example:
+npm install axios
+
+2.Manages Dependencies – Keeps track of all installed packages in package.json.
+
+3.Run script 
+npm start 
+
+4.Runs React App locally. 
+
+5.Updates Package
+npm Update
+
+6.✅ Updates all installed dependencies.
+
+
+Why Do We Need npm in React?
+✔️ Install React Easily (npx create-react-app my-app)
+✔️ Add Extra Features (like routing, UI components, API handling)
+✔️ Manage and Update Dependencies without breaking the project
+✔️ Run Important Commands (npm start, npm build, etc.)
+
+
+Common npm Commands for React
+
+npm init	-Creates a new project
+npm install	-Installs all dependencies from package.json
+npm install -package-name	Installs a specific package
+npm start	-Runs the React app
+npm run build	-Builds the app for production
+npm update	-Updates all dependencies
+In short, npm helps you easily install, manage, and run JavaScript libraries in React.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Package.json
+_____________ 
+
+-contain important details about project such as 
+1.Project Information (name,version,description)
+2.Dependencies(list of installed library)
+3.Scripts (commands to run the project)
+
+-It helps npm manage and install the right packages automatically.
+-Keeps Track of Installed Packages – No need to install manually.
+
+
+name: name of javascript project/ library
+version: the version of project.
+description: the project descrition
+license: the project license 
+ 
+
+npm init -y	              -Creates a package.json file
+npm install	-             -Installs all dependencies listed in package.json
+npm install axios	      -Adds axios package to dependencies
+npm start	              -Runs the project using the start script
+npm run build	           -Builds the project for production
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Dependencies vs Dev Dependencies
+________________________________
+
+Dependencies are the library/packages that react project needs to work properly. 
+Dev Dependencies are packages that are only needed during development, not when the app runs in production. 
+Think of devDependencies as tools for building and testing your app, like:
+
+Code formatters (Prettier)
+Linters (ESLint)
+Testing tools (Jest)
+Build tools (Webpack, Babel)
+📌 They are NOT included in the final app that users see.
+
+Difference: dependencies vs. devDependencies
+____________________________________________
+
+Feature	                dependencies	       devDependencies
+Needed in Production?	✅ Yes	              ❌ No
+Example Packages	    react, axios, redux	   eslint, webpack, jest
+
+Purpose	                Runs the app	       Helps in development
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+package-lock.json
+_________________ 
+
+-Package.json list which package your project needs, package-lock-json locks the exact version of those packages.
+- This file describes the exact versions of the dependencies used in an npm JavaScript project.
+
+-Why is package-lock.json Important?
+✔️ Ensures Consistency – Everyone working on the project installs the same versions.
+✔️ Improves Performance – Speeds up installation using cached versions.
+✔️ Prevents Unexpected Errors – Avoids breaking changes due to different versions.
+
+
+
+
+Key Differences: package.json vs. package-lock.json
+Feature	           package.json	        package-lock.json
+Purpose	           Lists dependencies	Locks exact versions
+Human-readable?	   ✅ Yes	           ❌ No (machine-generated)
+Can be edited manually?	✅ Yes	       ❌ No
+Ensures exact versions?	❌ No	       ✅ Yes
+
+
+
+
+
+
+
+
+
+npm vs npx — What’s the Difference?

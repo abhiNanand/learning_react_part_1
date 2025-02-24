@@ -1,0 +1,13 @@
+Virtual Dom is the lightweight copy of real DOM that allows react to manage changes more efficiently by minimizing the direct manipulation required on the real DOM.This process  enhance the performance of web apps.
+
+Step by step process of how virtual dom works.
+______________________________________________
+
+1. initial Rendering: 
+2. State and Props Changes:
+3. Comparision Using Diff Algorithm
+4. Reconciliation process
+5. Update the real dom
+
+
+

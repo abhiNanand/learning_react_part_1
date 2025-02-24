@@ -1,0 +1,105 @@
+https://react.dev/learn/writing-markup-with-jsx
+
+JSX stands for Javascript XML.
+it allows to write html code in javascript/react file
+
+JSX allows us to write HTML elements in JavaScript and place them in the DOM without any createElement()  and/or appendChild() methods.
+
+there are other ways to write components, but most react developers prefers jsx.
+
+JSX and React are two separate things. They’re often used together, but you can use them independently of each other. JSX is a syntax extension, while React is a JavaScript library.
+
+
+The Rules of JSX 
+1. Return a single root element 
+To return multiple elements from a component, wrap them with a single parent tag.
+
+For example, you can use a <div>:
+
+<div>
+  <h1>Hedy Lamarr's Todos</h1>
+  <img 
+    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    alt="Hedy Lamarr" 
+    class="photo"
+  >
+  <ul>
+    ...
+  </ul>
+</div>
+If you don’t want to add an extra <div> to your markup, you can write <> and </> instead:
+
+<>
+  <h1>Hedy Lamarr's Todos</h1>
+  <img 
+    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    alt="Hedy Lamarr" 
+    class="photo"
+  >
+  <ul>
+    ...
+  </ul>
+</>
+This empty tag is called a Fragment. Fragments let you group things without leaving any trace in the browser HTML tree.
+
+
+
+
+
+
+
+
+=============================================================================
+
+2. Close all the tags.
+
+JSX requires tags to be explicitly closed: self-closing tags like <img> must become <img />, and wrapping tags like <li>oranges must be written as <li>oranges</li>.
+
+This is how Hedy Lamarr’s image and list items look closed:
+
+<>
+  <img 
+    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    alt="Hedy Lamarr" 
+    class="photo"
+   />
+  <ul>
+    <li>Invent new traffic lights</li>
+    <li>Rehearse a movie scene</li>
+    <li>Improve the spectrum technology</li>
+  </ul>
+</>
+
+
+3. camelCase all most of the things! 
+JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can’t contain dashes or be reserved words like class.
+
+This is why, in React, many HTML and SVG attributes are written in camelCase. For example, instead of stroke-width you use strokeWidth. Since class is a reserved word, in React you write className instead, named after the corresponding DOM property:
+
+<img 
+  src="https://i.imgur.com/yXOvdOSs.jpg" 
+  alt="Hedy Lamarr" 
+  className="photo"
+/>
+===========================================================
+
+Two ways to wrapping expression
+
+name="abhishek";
+
+or 
+name={"abhishek"};
+
+this one is recommended.
+ if you want to dynamically specify the src or alt text? You could use a value from JavaScript by replacing " and " with { and }:
+
+
+ export default function TodoList() {
+  const name = 'Abhishek Anand';
+  return (
+    <h1>{name}'s To Do List</h1>
+  );
+}
+
+Abhishek Anand To Do List 
+_________________________

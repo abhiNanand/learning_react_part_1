@@ -1,0 +1,68 @@
+useEffect
+_________ 
+
+useEffect is a react hook that lets you synchronize a component with an external system.(like APIs, browser events, or timers).
+
+
+synchronize - means happen at the same time.
+
+synchronize means here that keeping your component updated whenever somethings outside react changes.
+syntax 
+
+useEffect(setup, dependencies?);
+
+-useEffect return is undefined.
+-setup->the function with Effect's logic.
+-(optional) dependencies:
+------------------------------------------
+-call useEffect at the top level of the componnet to delcare an effect.
+-------------------------------------------------------------------------------
+
+2️⃣ Why is useEffect Used?
+React only updates the UI when state or props change. But sometimes, you need to interact with external things like: ✅ Fetching data from an API
+✅ Updating the browser title
+✅ Setting up event listeners (e.g., keypress, mouse clicks)
+✅ Running a timer
+✅ Saving data to localStorage
+
+Since these don’t directly change state or props, they are considered side effects, and useEffect is used to handle them.
+
+3️⃣ Basic Syntax
+
+import {useEffect} from 'react';
+
+useEffect(()=>
+{
+
+//code to run after render.
+
+});
+
+
+example 1:
+import { useState, useEffect } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Component rendered!");
+  });
+
+  return (
+    <>
+      <h1>Count: {count}</h1>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </>
+  );
+}
+
+
+-when component render useEffect runs.
+-When the user clicks "Increment", the state (count) changes, causing the component to re-render.
+-useEffect runs again after every render.
+
+=========================================================
+useEffect hooks se hum sideeffect generate kr saktey hai. 
+example 
+counter jb update hoga tho hum ek alert show kar saktey hai. tho yha pr counter update hona ek event hai aur alret kr dena ush event pr sideeffect hoga.isko generate karne ka logic useEffect ke andher hoga

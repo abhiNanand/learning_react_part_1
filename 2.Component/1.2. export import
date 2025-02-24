@@ -1,0 +1,114 @@
+Inside Gallary.js file
+
+function Profile() {
+  return (
+    <img
+      src="https://i.imgur.com/MK3eW3As.jpg"
+      alt="Katherine Johnson"
+    />
+  );
+}
+
+export default function Gallery() {
+  return (
+    <section>
+      <h1>Amazing scientists</h1>
+      <Profile />
+      <Profile />
+      <Profile />
+    </section>
+  );
+}
+
+
+output . three images will be displayed
+
+
+==========================================================================
+
+
+
+//importing Gallary function from Galley.js in App.js
+inside App.js
+
+import Gallary from '.Gallary.js'
+
+export default function App(){
+return 
+(
+    <Gallery/>
+);
+}
+
+
+Either './Gallery.js' or './Gallery' will work with React, though the former is closer to how native ES Modules work.
+
+ 
+==========================================================================
+
+
+Default vs Named Export
+
+there are two primary ways to export values with javascript default and named export.
+both can be used in a single file too.
+default can be only one time allowed but named multiple time allowed.
+
+https://react.dev/images/docs/illustrations/i_import-export.svg
+
+
+Syntax
+______ 
+
+Export statement
+  
+  defalut- export default function Button(){}
+  named- export function Button() {}
+
+Import statement
+  default: import Button from './Button.js';
+  named: import {Button} from  '/Button.js';
+
+
+When you write a default import, you can put any name you want after import. For example, you could write import Banana from './Button.js' instead and it would still provide you with the same default export. In contrast, with named imports, the name has to match on both sides. That’s why they are called named imports!
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=
+Note
+To reduce the potential confusion between default and named exports, some teams choose to only stick to one style (default or named), or avoid mixing them in a single file. Do what works best for you!
+
+
+
+
+==========================================================================What is difference betweeen named export and default exoprt?
+
+Named exports allow you to export multiple values from a module by name. When importing, you must use the exact name of the exported value.
+
+Default exports are used when a module exports a single main value. When importing, you can use any name.
+_--------------_________-----------____--------__-----__--__-__-_--_--_--_-__---__---_--------__--_--_-__-______------_____________---------____----
+example:
+
+Example of Named Export
+Exporting (file: mathUtils.js)
+ 
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+export function multiply(a, b) {
+  return a * b;
+}
+=========================================================
+Here, we are exporting multiple functions by name.
+Importing (file: app.js)
+ 
+import { add, subtract, multiply } from './mathUtils.js';
+
+console.log(add(2, 3));        // Output: 5
+console.log(subtract(5, 2));   // Output: 3
+console.log(multiply(3, 4));   // Output: 12
+===========================================================
+file: logger.js
+export default function logMessage(message) {
+  console.log(`Log: ${message}`);
+}
+
+file: app.js
+import log from './logger.js';
+
+log("Hello!"); // Output: Log: Hello!

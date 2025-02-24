@@ -1,0 +1,16 @@
+
+What is NPX?
+-npx is a tools that run Node.js packages without installing them      globally.
+-instaead of installing a packages permanent, npx lets you run it directly.
+
+Difference Between npm and npx
+______________________________
+
+Feature	           npm	                         npx
+What it does	Installs packages	Runs packages without installing
+Used for	  Installing dependencies (npm install react)	Running CLI tools 
+(npx create-react-app my-app)
+
+Installs 
+globally?	✅ Yes (with -g flag)	❌ No
+Example	    npm install axios (installs axios)	npx create-react-app         my-app (runs without installing)
