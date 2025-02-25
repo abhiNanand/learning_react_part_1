@@ -1,0 +1,17 @@
+
+4 step me hota hai useContext hook use karne ka.
+
+1. create context 
+const UserContext=createContext();
+
+2. Provide value to  the child you want to give.
+3. pass the value.
+4. consumer ke andher ja kr consume kr lo
+
+how to provide value to child.
+
+<UserContext.Provider  value={anyvalue want to pass}>
+  <Child/>
+  //isme jiska jiska naam vo sab ko value mil jayega.
+<UserContext.Provider/>
+
