@@ -1,0 +1,10 @@
+React me Rendering ka matlab hota hai kisi component ko UI (User Interface) me display karna. Jab bhi koi component render hota hai, React uska Virtual DOM me representation update karta hai aur browser ke actual DOM me changes apply karta hai.
+
+Agar aapka React app Strict Mode (<React.StrictMode>) ke andar wrapped hai, to React functional components ko 2 baar render karta hai sirf development mode me.
+🔹 Ye React ke behavior ko check karne ke liye hota hai ki kahi koi side effect (useEffect) ya state update incorrectly to nahi ho raha.
+
+
+React me State Kya Hota Hai?
+React me state ek JavaScript object hota hai jo kisi component ke andar dynamic data ko store karta hai. State ka use component ke behavior aur UI ko update karne ke liye hota hai. Jab state change hota hai, React component re-render hota hai aur UI update ho jata hai.
+
+State Management ka matlab hai kisi application me state ko efficiently handle karna, taaki components easily communicate kar sakein aur application smoothly work kare.
