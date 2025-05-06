@@ -31,4 +31,3 @@ Babel uses presets to define which transformations should be applied:
 
 @babel/preset-react → Converts JSX
 @babel/preset-env → Converts modern JS
-

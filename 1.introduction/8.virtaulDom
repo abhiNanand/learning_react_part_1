@@ -1,0 +1,70 @@
+Virtual DOM ek lightweight copy hota hai actual DOM ka, jisme React har update ke baad comparison karta hai aur sirf wahi changes apply karta hai jo zaroori hote hain.
+
+Kaise kaam karta hai?
+---------------------
+React ek Virtual DOM tree maintain karta hai.
+Jab koi state ya props change hoti hai, to React ek naya Virtual DOM create karta hai.
+Diffing algorithm old Virtual DOM aur new Virtual DOM ka comparison karta hai.
+Only changed elements ko actual DOM me update kiya jata hai, taaki performance better ho.
+
+🚀 Kyu useful hai?
+
+Direct DOM manipulation slow hoti hai, kyunki real DOM modifications expensive hote hain.
+Virtual DOM changes ko minimize karke faster updates provide karta hai.
+
+
+import React, { useState } from 'react';
+
+function App() {
+ const [count, setCount] = useState(0);
+
+ return (
+   <div>
+     <h1>Counter: {count}</h1>
+     <button onClick={() => setCount(count + 1)}>Increment</button>
+   </div>
+ );
+}
+
+export default App;
+
+
+
+{
+ "type": "div",
+ "props": {},
+ "children": [
+   {
+     "type": "h1",
+     "props": {},
+     "children": [
+       {
+         "type": "TEXT_ELEMENT",
+         "props": {
+           "nodeValue": "Counter: 0"
+         }
+       }
+     ]
+   },
+   {
+     "type": "button",
+     "props": {
+       "onClick": "setCount(count + 1)"
+     },
+     "children": [
+       {
+         "type": "TEXT_ELEMENT",
+         "props": {
+           "nodeValue": "Increment"
+         }
+       }
+     ]
+   }
+ ]
+}
+
+===================================================================================================================
+
+Comparing the Virtual DOM to the Real DOM
+------------------------------------------
+

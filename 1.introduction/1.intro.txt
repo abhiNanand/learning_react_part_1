@@ -23,6 +23,11 @@ How React Solves these problem?
 ✅ Easy to Learn & Use – React uses JavaScript and JSX (similar to HTML), making it developer-friendly.
 In short, React makes web development faster, cleaner, and more efficient! 
 
+Main Points:
+Fast UI Updates: React ka Virtual DOM sirf badle huye parts ko update karta hai, jo faster hota hai.
+Component-Based Architecture: React me UI components hote hain, jo reusable aur easy to manage hote hain.
+State Management: React me useState, useReducer jese hooks hote hain, jo efficiently state handle karte hain.
+Routing & SPA: React page reload kiye bina content change kar sakta hai (React Router use karke).
 
 
 Sandboxes for react - A sandbox is an isolated testing environment that enables users to run programs or open files

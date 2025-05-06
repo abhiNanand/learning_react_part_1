@@ -94,14 +94,9 @@ Purpose	                Runs the app	       Helps in development
 package-lock.json
 _________________ 
 
--Package.json list which package your project needs, package-lock-json locks the exact version of those packages.
-- This file describes the exact versions of the dependencies used in an npm JavaScript project.
-
--Why is package-lock.json Important?
-✔️ Ensures Consistency – Everyone working on the project installs the same versions.
-✔️ Improves Performance – Speeds up installation using cached versions.
-✔️ Prevents Unexpected Errors – Avoids breaking changes due to different versions.
-
+-package-lock.json ek automatically generated file hai jo npm ke through install hone wale dependencies ka exact version lock karne ka kaam karti hai. Is file ka main purpose package versions ko freeze karna hota hai taki development team ke har member ke paas exact same dependencies ho.
+Feature	package.json	package-lock.json
+Purpose	Dependencies ko define karta hai	Exact version lock karta hai
 
 
 
@@ -109,7 +104,7 @@ Key Differences: package.json vs. package-lock.json
 Feature	           package.json	        package-lock.json
 Purpose	           Lists dependencies	Locks exact versions
 Human-readable?	   ✅ Yes	           ❌ No (machine-generated)
-Can be edited manually?	✅ Yes	       ❌ No
+ 
 Ensures exact versions?	❌ No	       ✅ Yes
 
 

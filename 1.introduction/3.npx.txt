@@ -14,3 +14,6 @@ Used for	  Installing dependencies (npm install react)	Running CLI tools
 Installs 
 globally?	✅ Yes (with -g flag)	❌ No
 Example	    npm install axios (installs axios)	npx create-react-app         my-app (runs without installing)
+
+npx latest version use karta hai aur npm installed version use karta hai.
+npx temporary execution ke liye use hota hai, jabki npm permanent installation ke liye.

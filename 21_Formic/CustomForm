@@ -1,0 +1,143 @@
+To create a **custom reusable Formik form component** using **Formik + Yup** that supports different fields and validation schemas depending on the use case (e.g., Login form vs Signup form), you'll need to:
+
+### ✅ Goals:
+
+1. Accept dynamic `initialValues`, `validationSchema`, and `onSubmit` function via props.
+2. Render fields based on configuration.
+3. Use a single component in multiple places with different forms.
+
+---
+
+### 🛠 Step-by-step Example:
+
+#### 1. **Create a Reusable `CustomForm` Component**
+
+```jsx
+// CustomForm.jsx
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+
+const CustomForm = ({ initialValues, validationSchema, onSubmit, fields }) => {
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      <Form>
+        {fields.map((field) => (
+          <div key={field.name} style={{ marginBottom: "1rem" }}>
+            <label htmlFor={field.name}>{field.label}</label>
+            <Field
+              name={field.name}
+              type={field.type}
+              placeholder={field.placeholder}
+            />
+            <ErrorMessage
+              name={field.name}
+              component="div"
+              style={{ color: "red", fontSize: "0.8rem" }}
+            />
+          </div>
+        ))}
+        <button type="submit">Submit</button>
+      </Form>
+    </Formik>
+  );
+};
+
+export default CustomForm;
+```
+
+---
+
+#### 2. **Use It with Different Configurations**
+
+##### ➤ **Use Case 1: Mobile Form**
+
+```jsx
+// MobileForm.jsx
+import * as Yup from "yup";
+import CustomForm from "./CustomForm";
+
+const MobileForm = () => {
+  const initialValues = { mobile: "" };
+
+  const validationSchema = Yup.object({
+    mobile: Yup.string().required("Mobile is required"),
+  });
+
+  const handleSubmit = (values) => {
+    console.log("Mobile Submit:", values);
+  };
+
+  const fields = [
+    { name: "mobile", label: "Mobile", type: "text", placeholder: "Enter mobile" },
+  ];
+
+  return (
+    <CustomForm
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+      fields={fields}
+    />
+  );
+};
+
+export default MobileForm;
+```
+
+---
+
+##### ➤ **Use Case 2: Signup Form**
+
+```jsx
+// SignupForm.jsx
+import * as Yup from "yup";
+import CustomForm from "./CustomForm";
+
+const SignupForm = () => {
+  const initialValues = { name: "", email: "", mobile: "" };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    mobile: Yup.string().required("Mobile is required"),
+  });
+
+  const handleSubmit = (values) => {
+    console.log("Signup Submit:", values);
+  };
+
+  const fields = [
+    { name: "name", label: "Name", type: "text", placeholder: "Enter name" },
+    { name: "email", label: "Email", type: "email", placeholder: "Enter email" },
+    { name: "mobile", label: "Mobile", type: "text", placeholder: "Enter mobile" },
+  ];
+
+  return (
+    <CustomForm
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+      fields={fields}
+    />
+  );
+};
+
+export default SignupForm;
+```
+
+---
+
+### ✅ Summary
+
+You can now reuse `CustomForm` like this:
+
+```jsx
+<MobileForm /> // renders only mobile field
+<SignupForm /> // renders name, email, and mobile
+```
+
+Would you like me to help you implement this in your existing project or show this as a single file demo for quick testing?

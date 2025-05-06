@@ -28,4 +28,4 @@ iseley value.current use keya hai. q ki currect defult key hai jisme jo hamara i
 
 ##
 Note:
-ham log without ref v same kaam kar saktey hai , ek let val=0 se variable bana fir button me function laga kr increment krtey jayenge vo update v ho jayega bina render keye .  but isme ek problem ye hai ki value reset ho jayege jb v hum kvi render keye tho. lekin useRef ke case me value safe rahege render karne pr v.aur latest value screen pr v show ho jayege agar render keye tho. 
+ham log without ref v same kaam kar saktey hai , ek let val=0 se variable bana fir button me function laga kr increment krtey jayenge vo update v ho jayega bina render keye .  but isme ek problem ye hai ki value reset ho jayege jb v hum kvi render keye tho. lekin useRef ke case me value safe rahege render karne pr v.aur latest value screen pr v show ho jayege agar render keye tho.
